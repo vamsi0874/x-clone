@@ -5,7 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import QueryProvider from "@/providers/QueryProvider";
 
 export const metadata: Metadata = {
-  title: "vamsi Dev X Clone",
+  title: " twitter",
   description: "Next.js social media application project",
 };
 
@@ -18,6 +18,9 @@ export default function AppLayout({
     <ClerkProvider>
       <QueryProvider>
         <html lang="en">
+        <head>
+         <link rel="icon" type="image/png" href="/general/avatar.png" sizes="any" />
+      </head>
           <body>
             {children}
             </body>
