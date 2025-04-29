@@ -93,7 +93,9 @@ export async function GET(request: NextRequest) {
                   skip: (Number(page) - 1) * LIMIT,
                   select: { followingId: true },
                 })
-              ).map((follow) => follow.followingId),
+              ).map((follow:{
+                followingId: string;
+              }) => follow.followingId),
             ],
           },
         };
