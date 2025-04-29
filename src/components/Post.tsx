@@ -47,7 +47,7 @@ type UserSummary = {
 };
 
 
-type PostWithDetails = PostType &
+export type PostWithDetails = PostType &
   Engagement & {
     user: UserSummary;
     rePost?: (PostType & Engagement & { user: UserSummary }) | null;

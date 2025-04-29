@@ -54,7 +54,7 @@ const Notifications = () => {
       {open && (
         <div className="absolute -right-full p-4 rounded-lg bg-white text-black flex flex-col gap-4 w-max">
           <h1 className="text-xl text-textGray">Notifications</h1>
-          {notifications.map((n) => (
+          {notifications.map((n:NotificationType) => (
             <div
               className="cursor-pointer"
               key={n.id}

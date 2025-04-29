@@ -118,7 +118,7 @@ const Comments = ({
       {state.error && (
         <span className="text-red-300 p-4">Something went wrong!</span>
       )}
-      {comments.map((comment) => (
+      {comments.map((comment:CommentWithDetails) => (
         <div key={comment.id}>
           <Post post={comment} type="comment" />
         </div>

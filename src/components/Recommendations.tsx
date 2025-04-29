@@ -13,7 +13,7 @@ const Recommendations = async () => {
     select: { followingId: true },
   });
 
-  const followedUserIds = followingIds.map((f) => f.followingId);
+  const followedUserIds = followingIds.map((f:{followingId:string}) => f.followingId);
 
   const friendRecommendations = await prisma.user.findMany({
     where: {
@@ -26,7 +26,7 @@ const Recommendations = async () => {
 
   return (
     <div className="p-4 rounded-2xl border-[1px] border-borderGray flex flex-col gap-4">
-      {friendRecommendations.map((person) => (
+      {friendRecommendations.map((person:{id:string,displayName:string | null,username:string, img:string | null }) => (
         <div className="flex items-center justify-between" key={person.id}>
           {/* IMAGE AND USER INFO */}
           <div className="flex items-center gap-2">

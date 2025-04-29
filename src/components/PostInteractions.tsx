@@ -57,8 +57,7 @@ const PostInteractions = ({  username,
       );
       const likeAction = async () => {
 
-        console.log('reciverUsername ',username)
-        console.log('senderUsername ',user?.username)
+        
         if (!user) return;
        if(!optimisticCount.isLiked) {
         socket.emit("sendNotification", {

@@ -1,5 +1,5 @@
 import { prisma } from "@/prisma";
-import Post from "./Post"
+import Post, { PostWithDetails } from "./Post"
 import { auth } from "@clerk/nextjs/server";
 import InfiniteFeed from "./InfiniteFeed";
 
@@ -51,7 +51,7 @@ const Feed = async ({userProfileId}:{userProfileId?:string}) => {
  
   return (
     <div className=''>
-      {posts.map((post) => (
+      {posts.map((post:PostWithDetails) => (
         <div key={post.id}>
           <Post post={post}/>
         </div>

@@ -1,7 +1,7 @@
 "use client"
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useInfiniteQuery } from "@tanstack/react-query"
-import Post from "./Post";
+import Post, { PostWithDetails } from "./Post";
 
 
 const InfiniteFeed = ({userProfileId}:{userProfileId?:string}) => {
@@ -48,7 +48,7 @@ const InfiniteFeed = ({userProfileId}:{userProfileId?:string}) => {
       loader={<h1>Posts are loading...</h1>}
       endMessage={<h1>All posts loaded!</h1>}
     >
-      {allPosts.map((post) => (
+      {allPosts.map((post:PostWithDetails) => (
         <Post key={post.id} post={post}/>
       ))}
       </InfiniteScroll>

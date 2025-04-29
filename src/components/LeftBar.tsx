@@ -83,7 +83,7 @@ const LeftBar = async () => {
         </Link>
         {/* MENU LIST */}
         <div className="flex flex-col gap-4">
-          {menuList.map((item, i) => (
+          {menuList.map((item:{id:number,name:string,link:string,icon:string}, i:number) => (
             <div key={item.id || i}>
               {i === 2 && user && (
                 <div>
