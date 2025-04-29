@@ -3,10 +3,41 @@
 import { useUser } from "@clerk/nextjs";
 import Image from "./Image";
 import Post from "./Post";
-import { Post as PostType } from "@prisma/client";
+// import { Post as PostType } from "@prisma/client";
 import { useActionState, useEffect } from "react";
 import { addComment } from "@/action";
 import { socket } from "@/socket";
+
+// types/prisma.ts
+export type PostType = {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  desc?: string | null;
+  img?: string | null;
+  imgHeight?: number | null;
+  video?: string | null;
+  isSensitive: boolean;
+  userId: string;
+  rePostId?: number | null;
+  parentPostId?: number | null;
+
+  // Optional for extended data
+  user?: {
+    displayName: string | null;
+    username: string;
+    img: string | null;
+  };
+  _count?: {
+    likes: number;
+    rePosts: number;
+    comments: number;
+  };
+  likes?: { id: number }[];
+  rePosts?: { id: number }[];
+  saves?: { id: number }[];
+};
+
 
 type CommentWithDetails = PostType & {
   user: { displayName: string | null; username: string; img: string | null };
@@ -14,6 +45,7 @@ type CommentWithDetails = PostType & {
   likes: { id: number }[];
   rePosts: { id: number }[];
   saves: { id: number }[];
+  img: string | null; 
 };
 
 const Comments = ({

@@ -3,17 +3,37 @@ import Image from "./Image";
 import PostInfo from "./PostInfo";
 import PostInteractions from "./PostInteractions";
 import Link from "next/link";
-import { Post as PostType } from "@prisma/client";
 import { format } from "timeago.js";
 
-// interface FileDetailsResponse {
-//   width: number;
-//   height: number;
-//   filePath: string;
-//   url: string;
-//   fileType: string;
-//   customMetadata?: { sensitive: boolean };
-// }
+export type PostType = {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  desc?: string | null;
+  img?: string | null;
+  imgHeight?: number | null;
+  video?: string | null;
+  isSensitive: boolean;
+  userId: string;
+  rePostId?: number | null;
+  parentPostId?: number | null;
+
+  // Optional for extended data
+  user?: {
+    displayName: string | null;
+    username: string;
+    img: string | null;
+  };
+  _count?: {
+    likes: number;
+    rePosts: number;
+    comments: number;
+  };
+  likes?: { id: number }[];
+  rePosts?: { id: number }[];
+  saves?: { id: number }[];
+};
+
 type Engagement = {
   _count: { likes: number; rePosts: number; comments: number };
   likes: { id: number }[];
