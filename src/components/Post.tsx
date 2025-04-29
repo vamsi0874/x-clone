@@ -63,7 +63,7 @@ const Post =  ({ type ,post}: { type?: "status" | "comment",post:PostWithDetails
             type === "status" && "hidden"
           } relative w-10 h-10 rounded-full overflow-hidden`}
         >
-          <Image path={originalPost.user.img || "general/noAvatar.png"} alt="" w={100} h={100} tr={true} />
+          <Image className="-z-10" path={originalPost.user.img || "general/noAvatar.png"} alt="" w={100} h={100} tr={true} />
         </div>
         {/* CONTENT */}
         <div className="flex-1 flex flex-col gap-2">
@@ -76,6 +76,7 @@ const Post =  ({ type ,post}: { type?: "status" | "comment",post:PostWithDetails
                 } relative w-10 h-10 rounded-full overflow-hidden`}
               >
                 <Image
+                 
                   path={originalPost.user.img!}
                   alt=""
                   w={100}

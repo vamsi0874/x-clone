@@ -71,6 +71,8 @@ const menuList = [
 const LeftBar = async () => {
   const user = await currentUser();
 
+  menuList[6].link = `/${user?.username}`;
+
   return (
     <div className="h-screen sticky top-0 flex flex-col justify-between pt-2 pb-8">
       {/* LOGO MENU BUTTON */}

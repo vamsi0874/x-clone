@@ -55,7 +55,6 @@ const Feed = async ({userProfileId}:{userProfileId?:string}) => {
       {posts.map((post) => (
         <div key={post.id}>
           <Post post={post}/>
-           From Server
         </div>
       ))}
         <InfiniteFeed userProfileId={userProfileId}/>
