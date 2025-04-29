@@ -11,7 +11,8 @@
     "nodemon": "nodemon server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@clerk/elements": "^0.23.18",
