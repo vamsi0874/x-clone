@@ -8,7 +8,7 @@ const InfiniteFeed = ({userProfileId}:{userProfileId?:string}) => {
 
     const fetchPosts = async (pageParam:number, userProfileId:string) => {
         const res = await fetch(
-            "http://localhost:3000/api/posts?cursor=" +
+            `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/posts?cursor=` +
               pageParam +
               "&user=" +
               userProfileId
