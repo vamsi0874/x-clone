@@ -9,7 +9,6 @@ const Feed = async ({userProfileId}:{userProfileId?:string}) => {
 
   if(!userId) return 
 
-  console.log('useriddd',userProfileId)
 
   const whereCondition = userProfileId
   ? { parentPostId: null, userId: userProfileId }
@@ -23,7 +22,7 @@ const Feed = async ({userProfileId}:{userProfileId?:string}) => {
               where: { followerId: userId },
               select: { followingId: true },
             })
-          ).map((follow) => follow.followingId),
+          ).map((follow:{followingId:string}) => follow.followingId),
         ],
       },
     };
