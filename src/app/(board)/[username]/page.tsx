@@ -14,6 +14,7 @@ const UserPage = async ({
 
 
   const {userId} = await auth()
+  console.log('userIddddddddd',userId)
   
   const user = await prisma.user.findUnique({
     where: {
@@ -28,29 +29,29 @@ const UserPage = async ({
       } : undefined
     }
   })
-
+  console.log('userdddddddd',user)
 
   if(!user) return notFound()
 
 
   return (
     <div className="">
-      {/* PROFILE TITLE */}
+     
       <div className="flex items-center gap-8 sticky top-0 backdrop-blur-md p-4 z-10 bg-[#00000084]">
         <Link href="/">
           <Image path="icons/back.svg" alt="back" w={24} h={24} />
         </Link>
         <h1 className="font-bold text-lg">{user?.displayName}</h1>
       </div>
-      {/* INFO */}
+    
       <div className="">
-        {/* COVER & AVATAR CONTAINER */}
+    
         <div className="relative w-full">
-          {/* COVER */}
+        
           <div className="w-full aspect-[3/1] relative">
-            <Image path={user.cover || "general/noCover.jpg" }alt="" w={600} h={200} tr={true} />
+            <Image path={user.cover =='NULL' ? "general/noCover.jpg" : user.cover || "general/noCover.jpg" }alt="" w={600} h={200} tr={true} />
           </div>
-          {/* AVATAR */}
+       
           <div className="w-1/5 aspect-square rounded-full overflow-hidden border-4 border-black bg-gray-300 absolute left-4 -translate-y-1/2">
             <Image path={user.img || "general/noAvatar.png"} alt="" w={100} h={100} tr={true} />
           </div>
@@ -69,15 +70,15 @@ const UserPage = async ({
           { userId && <FollowButton userId={user.id} isFollowed={!!user.followings.length}/>}
           
         </div>
-        {/* USER DETAILS */}
+      
         <div className="p-4 flex flex-col gap-2">
-          {/* USERNAME & HANDLE */}
+ 
           <div className="">
             <h1 className="text-2xl font-bold">{user.displayName} Dev</h1>
             <span className="text-textGray text-sm">@{user.username}</span>
           </div>
           {user.bio && <p>{user.bio} Channel</p>}
-          {/* JOB & LOCATION & DATE */}
+        
           <div className="flex gap-4 text-textGray text-[15px]">
             <div className="flex items-center gap-2">
               <Image
@@ -98,7 +99,7 @@ const UserPage = async ({
                 </span>
             </div>
           </div>
-          {/* FOLLOWINGS & FOLLOWERS */}
+        
           <div className="flex gap-4">
             <div className="flex items-center gap-2">
               <span className="font-bold">{user._count.followers}</span>
@@ -111,7 +112,7 @@ const UserPage = async ({
           </div>
         </div>
       </div>
-      {/* FEED */}
+     
       <Feed userProfileId={user?.id}/>
     </div>
   );

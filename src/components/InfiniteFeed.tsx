@@ -31,7 +31,11 @@ const InfiniteFeed = ({userProfileId}:{userProfileId?:string}) => {
         console.log(error)
         return "something went wrong"
     }
-      if(status === "pending") return "loading"
+      if(status === "pending") return (
+        <div className="flex justify-center py-6">
+            <div className="h-6 w-6 animate-spin rounded-full border-4 border-gray-300 border-t-black"></div>
+          </div>
+      )
       
     
       console.log(data)
@@ -45,11 +49,21 @@ const InfiniteFeed = ({userProfileId}:{userProfileId?:string}) => {
       dataLength={allPosts.length}
       next={fetchNextPage}
       hasMore={!!hasNextPage}
-      loader={<h1>Posts are loading...</h1>}
-      endMessage={<h1>All posts loaded!</h1>}
+      loader={ 
+          <div className="flex justify-center py-6">
+            <div className="h-6 w-6 animate-spin rounded-full border-4 border-gray-300 border-t-black"></div>
+          </div>
+         }
+      endMessage={ 
+        <div className="text-center text-sm text-gray-500 py-6">
+        <div className="inline-block bg-gray-100 text-gray-700 px-4 py-2 rounded-full shadow-sm">
+          All posts loaded!
+        </div>
+       </div>
+      }
     >
-      {allPosts.map((post:PostWithDetails) => (
-        <Post key={post.id} post={post}/>
+      {allPosts.map((post:PostWithDetails,index:number) => (
+        <Post key={index} post={post}/>
       ))}
       </InfiniteScroll>
         </div>

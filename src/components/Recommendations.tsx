@@ -1,7 +1,8 @@
-import Link from "next/link";
 import Image from "./Image";
 import { prisma } from "@/prisma";
 import { auth } from "@clerk/nextjs/server";
+import Link from "next/link";
+import LinkUsers from "./link-users";
 
 const Recommendations = async () => {
   const { userId } = await auth();
@@ -16,19 +17,28 @@ const Recommendations = async () => {
   const followedUserIds = followingIds.map((f:{followingId:string}) => f.followingId);
 
   const friendRecommendations = await prisma.user.findMany({
-    where: {
-      id: { not: userId, notIn: followedUserIds },
-      followings: { some: { followerId: { in: followedUserIds } } },
+  where: {
+    id: {
+      notIn: [userId, ...followedUserIds],
     },
-    take: 3,
-    select: { id: true, displayName: true, username: true, img: true },
-  });
+  },
+  take: 3,
+  select: {
+    id: true,
+    displayName: true,
+    username: true,
+    img: true,
+  },
+});
+
 
   return (
     <div className="p-4 rounded-2xl border-[1px] border-borderGray flex flex-col gap-4">
-      {friendRecommendations.map((person:{id:string,displayName:string | null,username:string, img:string | null }) => (
+      <div>Suggestions</div>
+       <LinkUsers friendRecommendations={friendRecommendations}/>
+      {/* {friendRecommendations.map((person:{id:string,displayName:string | null,username:string, img:string | null }) => (
         <div className="flex items-center justify-between" key={person.id}>
-          {/* IMAGE AND USER INFO */}
+   
           <div className="flex items-center gap-2">
             <div className="relative rounded-full overflow-hidden w-10 h-10">
               <Image
@@ -44,16 +54,12 @@ const Recommendations = async () => {
               <span className="text-textGray text-sm">@{person.username}</span>
             </div>
           </div>
-          {/* BUTTON */}
+   
           <button className="py-1 px-4 font-semibold bg-white text-black rounded-full">
             Follow
           </button>
         </div>
-      ))}
-
-      <Link href="/" className="text-iconBlue">
-        Show More
-      </Link>
+      ))} */}
     </div>
   );
 };

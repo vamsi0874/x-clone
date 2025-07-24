@@ -75,13 +75,13 @@ const LeftBar = async () => {
 
   return (
     <div className="h-screen sticky top-0 flex flex-col justify-between pt-2 pb-8">
-      {/* LOGO MENU BUTTON */}
+
       <div className="flex flex-col gap-4 text-lg items-center xxl:items-start">
-        {/* LOGO */}
+     
         <Link href="/" className="p-2 rounded-full hover:bg-[#181818] ">
           <Image path="icons/logo.svg" alt="logo" w={24} h={24} />
         </Link>
-        {/* MENU LIST */}
+  
         <div className="flex flex-col gap-4">
           {menuList.map((item:{id:number,name:string,link:string,icon:string}, i:number) => (
             <div key={item.id || i}>
@@ -105,7 +105,7 @@ const LeftBar = async () => {
             </div>
           ))}
         </div>
-        {/* BUTTON */}
+       
         <Link
           href="/compose/post"
           className="bg-white text-black rounded-full w-12 h-12 flex items-center justify-center xxl:hidden"
@@ -122,7 +122,7 @@ const LeftBar = async () => {
       {user && (
         <>
           <Socket />
-          {/* USER */}
+        
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 relative rounded-full overflow-hidden -z-10">
@@ -139,8 +139,7 @@ const LeftBar = async () => {
                 <span className="text-sm text-textGray">@{user?.username}</span>
               </div>
             </div>
-            {/* <div className="hidden xxl:block cursor-pointer font-bold">...</div> */}
-            {/* ADD LOGOUT */}
+           
             <Logout/>
           </div>
         </>
