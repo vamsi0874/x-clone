@@ -2,7 +2,14 @@
 import { useRouter } from "next/navigation";
 import Image from "./Image";
 
-const LinkUsers = ({friendRecommendations}:{friendRecommendations:any}) => {
+interface FriendRecommendations {
+    id: string;
+    displayName: string | null;
+    username: string;
+    img: string | null;
+}
+
+const LinkUsers = ({friendRecommendations}:{friendRecommendations:FriendRecommendations[]}) => {
   
     const router = useRouter();
     const handleClick = (username:string) => {
