@@ -38,5 +38,5 @@ Supports real-time notifications, secure authentication, infinite scrolling, and
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/yourusername/x-clone.git
+git clone https://github.com/vamsi0874/x-clone.git
 ```
