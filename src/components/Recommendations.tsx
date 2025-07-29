@@ -1,7 +1,5 @@
-import Image from "./Image";
 import { prisma } from "@/prisma";
 import { auth } from "@clerk/nextjs/server";
-import Link from "next/link";
 import LinkUsers from "./link-users";
 
 const Recommendations = async () => {

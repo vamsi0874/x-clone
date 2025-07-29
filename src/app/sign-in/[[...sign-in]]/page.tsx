@@ -2,7 +2,6 @@
 
 import * as Clerk from "@clerk/elements/common";
 import * as SignIn from "@clerk/elements/sign-in";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
